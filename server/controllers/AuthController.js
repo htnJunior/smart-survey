@@ -1,8 +1,18 @@
+const { validationResult, matchedData} = require('express-validator')
+
 module.exports = {
-    signIn: async (req, res, next) => {
+    signin: async (req, res) => {
 
     },
-    signUp: async (req, res, next) => {
-        
+    signup: async (req, res) => {
+        const errors =  validationResult(req)
+        if(!errors.isEmpty()){
+            res.json({error: errors.mapped()})
+            return
+        }
+        const data = matchedData(req)
+
+        res.json({allgood:true, data})
+
     }
 }

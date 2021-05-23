@@ -1,0 +1,32 @@
+const { checkSchema } = require('express-validator')
+
+module.exports = {
+    signup: checkSchema({
+        name: {
+            trim: true,
+            notEmpty: true,
+            isLength: {
+                options: {
+                    min: 2
+                }
+            },
+            errorMessage: 'Nome precisa ter pelo menos dois caracteres'
+        },
+        email: {
+            isEmail: true,
+            normalizeEmail: true,
+            notEmpty: true,
+            errorMessage: 'Email inválido.'
+        },
+        passwd: {
+            notEmpty: true,
+            isLength: {
+                options: {
+                    min: 6,
+                    max: 8
+                }
+            },
+            errorMessage: 'Senha precisa ter no mínimo dois caracteres e no máximo oito'
+        }
+    })
+}
