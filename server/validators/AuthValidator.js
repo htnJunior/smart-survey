@@ -1,5 +1,6 @@
 const { checkSchema } = require('express-validator')
 
+//Form validator
 module.exports = {
     signup: checkSchema({
         name: {
@@ -23,10 +24,26 @@ module.exports = {
             isLength: {
                 options: {
                     min: 6,
-                    max: 8
                 }
             },
-            errorMessage: 'Senha precisa ter no mínimo dois caracteres e no máximo oito'
+            errorMessage: 'Senha precisa ter no mínimo seis caracteres'
+        }
+    }),
+    signin: checkSchema({
+        email: {
+            isEmail: true,
+            normalizeEmail: true,
+            notEmpty: true,
+            errorMessage: 'Email Inválido'
+        },
+        passwd: {
+            notEmpty: true,
+            isLength: {
+                options: {
+                    min: 6,
+                }
+            },
+            errorMessage: 'Senha precisa ter no mínimo seis caracteres'
         }
     })
 }

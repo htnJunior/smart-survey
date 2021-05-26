@@ -13,7 +13,7 @@ router.get('/ping', (req, res, next) => {
 })
 
 //Auth Routes
-router.post('/auth/signin', AuthController.signin)
+router.post('/auth/signin', AuthValidator.signin, AuthController.signin)
 router.post('/auth/signup', AuthValidator.signup, AuthController.signup)
 //User Routes
 router.get('/user/me', Auth.private, UserController.info)
