@@ -3,7 +3,7 @@ const User = require('../models/User')
 module.exports = {
     //Middleware responsible for private routes
     private: async (req, res, next) => {
-        if(!req.query.token || !req.body.token){
+        if(!req.query.token && !req.body.token){
             res.json( {notallowed: true} )
             return
         }
